@@ -1,0 +1,69 @@
+.canvas {
+  position: relative;
+  user-select: none;
+}
+
+.canvas-render {
+  pointer-events: none;
+}
+
+.canvas-controller {
+  position: absolute;
+  width: var(--width);
+  height: var(--height);
+  top: var(--top);
+  left: var(--left);
+  border: solid 2px var(--primary-color);
+  pointer-events: none;
+  transition:
+    width 200ms,
+    height 200ms;
+
+  &.is-drag {
+    background: rgba(255, 255, 255, 0.8);
+    border: none;
+  }
+}
+
+.canvas-sign,
+.canvas-hover {
+  position: absolute;
+  width: var(--width);
+  height: var(--height);
+  top: var(--top);
+  left: var(--left);
+  border: solid 2px var(--primary-color);
+  pointer-events: none;
+}
+
+.canvas-hover {
+  background: var(--primary-color-2);
+  border: solid 1px var(--primary-color);
+}
+
+.designer-item-menu-overlay {
+  :global(.ant-popover-inner) {
+    padding: 0;
+    border-radius: 6px;
+    overflow: hidden;
+  }
+
+  &.is-drag {
+    visibility: hidden;
+  }
+}
+
+.designer-item-menu {
+  background: var(--primary-color);
+  color: #fff;
+  padding: 2px 4px;
+  white-space: nowrap;
+}
+
+.drag-item {
+  position: absolute;
+  top: var(--top);
+  left: var(--left);
+  opacity: 0.6;
+  pointer-events: none;
+}
