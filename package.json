@@ -82,8 +82,10 @@
     "sass": "^1.75.0"
   },
   "dependencies": {
+    "@ant-design/icons": "^5.3.6",
     "@kne/global-context": "^1.0.0",
     "@kne/react-error-boundary": "^0.1.1",
+    "@kne/use-control-value": "^0.1.8",
     "@kne/use-ref-callback": "^0.1.2",
     "@monaco-editor/react": "^4.6.0"
   }

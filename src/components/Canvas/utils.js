@@ -45,6 +45,38 @@ const findDesignerElement = (element, root) => {
   return findDesignerElement(element.parentElement, root);
 };
 
+const findRelationElements = (element, root) => {
+  // 获取下一个元素兄弟节点
+  function getNextElementSibling(el) {
+    let sibling = el.nextSibling;
+    while (sibling && sibling.nodeType !== 1 && sibling.classList.contains('designer-node') && sibling.getAttribute('data-designer-id')) {
+      sibling = sibling.nextSibling;
+    }
+    return sibling;
+  }
+
+  // 获取上一个元素兄弟节点
+  function getPreviousElementSibling(el) {
+    let sibling = el.previousSibling;
+    while (sibling && sibling.nodeType !== 1 && sibling.classList.contains('designer-node') && sibling.getAttribute('data-designer-id')) {
+      sibling = sibling.previousSibling;
+    }
+    return sibling;
+  }
+
+  return {
+    next: getNextElementSibling(element),
+    prev: getPreviousElementSibling(element),
+    parent: findDesignerElement(element.parentElement, root, false),
+    firstChild: element.classList.contains('designer-node-lock')
+      ? null
+      : (() => {
+          const target = findDesignerElement(element.querySelector('[data-designer-id].designer-node'), root);
+          return element.contains(target) ? target : null;
+        })()
+  };
+};
+
 const computedSelectedArea = (activeElement, canvasElement, toggle = true) => {
   const currentDesignerElement = findDesignerElement(activeElement, canvasElement);
   if (!currentDesignerElement) {
@@ -55,9 +87,15 @@ const computedSelectedArea = (activeElement, canvasElement, toggle = true) => {
   const currentDesignerElementClientRect = currentDesignerElement.getBoundingClientRect();
   const canvasElementClientRect = canvasElement.getBoundingClientRect();
   const activeDesignerId = currentDesignerElement.getAttribute('data-designer-id');
+  const { next, prev, firstChild, parent } = findRelationElements(currentDesignerElement, canvasElement);
   return active => {
     return {
       activeDesignerId: toggle ? (active.activeDesignerId === activeDesignerId ? null : activeDesignerId) : activeDesignerId,
+      nextDesignerId: next ? next.getAttribute('data-designer-id') : null,
+      prevDesignerId: prev ? prev.getAttribute('data-designer-id') : null,
+      firstChildDesignerId: firstChild ? firstChild.getAttribute('data-designer-id') : null,
+      parentDesignerId: parent ? parent.getAttribute('data-designer-id') : null,
+      isLocked: currentDesignerElement.classList.contains('designer-node-lock'),
       left: currentDesignerElementClientRect.left - canvasElementClientRect.left,
       top: currentDesignerElementClientRect.top - canvasElementClientRect.top,
       width: currentDesignerElementClientRect.width,

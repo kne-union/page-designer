@@ -2,7 +2,14 @@ const { default: Canvas } = _Canvas;
 const { Button, Row, Col } = antd;
 const BaseExample = () => {
   return (
-    <Canvas>
+    <Canvas
+      onActiveChange={id => {
+        console.log(id);
+      }}
+      onLockedChange={(id, locked) => {
+        console.log(id, locked);
+      }}
+    >
       <div className="designer-node" data-designer-id="div-0">
         <Row className="designer-node" data-designer-id="row-0">
           <Col className="designer-node" data-designer-id="col-0">
