@@ -1,6 +1,6 @@
 import React from 'react';
 import { preset as fetchPreset } from '@kne/react-fetch';
-import { Spin, Empty, message } from 'antd';
+import { Empty, message, Spin } from 'antd';
 import axios from 'axios';
 import { preset as remoteLoaderPreset } from '@kne/remote-loader';
 import omit from 'lodash/omit';
@@ -9,9 +9,9 @@ window.PUBLIC_URL = process.env.PUBLIC_URL;
 
 const componentsCoreRemote = {
   remote: 'components-core',
-  url: 'https://registry.npmmirror.com',
-  tpl: '{{url}}/@kne-components%2f{{remote}}/{{version}}/files/build',
-  defaultVersion: '0.1.17'
+  url: 'http://localhost:3001',
+  tpl: '{{url}}',
+  defaultVersion: '0.1.31'
 };
 
 remoteLoaderPreset({
@@ -80,3 +80,13 @@ fetchPreset({
     return response;
   }
 });
+
+export const globalPreset = {
+  ajax,
+  apis: {},
+  enums: {},
+  themeToken: {
+    colorPrimary: '#4F185A',
+    colorPrimaryHover: '#702280'
+  }
+};

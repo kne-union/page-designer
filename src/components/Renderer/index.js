@@ -36,7 +36,13 @@ const Compile = ({ componentProps, profile }) => {
         {}
       );
       // eslint-disable-next-line no-new-func
-      return new Function('$args', '$lib', '$variables', '$functions', '$states', funcStr)(args, context.lib, context.variables, functions, context.states);
+      return new Function('$args', '$lib', '$variables', '$functions', '$states', funcStr)(
+        args,
+        context.lib,
+        context.variables,
+        functions,
+        context.states
+      );
     };
 
   Object.keys(profile.props || {}).forEach(name => {
@@ -316,21 +322,6 @@ Renderer.profiles = {
       },
       children: {
         type: 'jsx'
-      }
-    }
-  },
-  HelpDoc: {
-    component: RemoteLoader,
-    props: {
-      module: {
-        type: 'string',
-        defaultValue: 'components-function:HelpDoc'
-      },
-      apiKey: {
-        type: 'string'
-      },
-      url: {
-        type: 'string'
       }
     }
   },

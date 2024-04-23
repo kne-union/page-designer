@@ -4,7 +4,7 @@
   "description": "用于利用remote modules 可视化设计页面",
   "scripts": {
     "init": "husky",
-    "start": "cross-env PORT=3010 COMPONENTS_NAME=page-designer MODULES_DEV_PUBLIC_URL=/ craco start",
+    "start": "cross-env PORT=3029 COMPONENTS_NAME=page-designer MODULES_DEV_PUBLIC_URL=/ craco start",
     "build": "cross-env COMPONENTS_NAME=page-designer MODULES_DEV_PUBLIC_URL=page-designer craco build",
     "create": "modules-dev-create",
     "test": "craco test --coverage",
@@ -87,6 +87,7 @@
     "@kne/react-error-boundary": "^0.1.1",
     "@kne/use-control-value": "^0.1.8",
     "@kne/use-ref-callback": "^0.1.2",
-    "@monaco-editor/react": "^4.6.0"
+    "@monaco-editor/react": "^4.6.0",
+    "devices.css": "^0.2.0"
   }
 }

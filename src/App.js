@@ -1,28 +1,16 @@
-import { HashRouter } from 'react-router-dom';
-import createEntry from '@kne/modules-dev/dist/create-entry';
-import '@kne/modules-dev/dist/create-entry.css';
-import readme from 'readme';
+import Designer from '@components/Designer';
+import { createWithRemoteLoader } from '@kne/remote-loader';
+import { globalPreset } from './preset';
 
-const ExampleRoutes = createEntry.ExampleRoutes;
-
-const App = ({ preset, themeToken, ...props }) => {
+const App = createWithRemoteLoader({
+  modules: ['Global']
+})(({ remoteModules, ...props }) => {
+  const [Global] = remoteModules;
   return (
-    <HashRouter>
-      <ExampleRoutes
-        {...props}
-        paths={[
-          {
-            key: 'components',
-            path: '/',
-            title: '首页'
-          }
-        ]}
-        preset={preset}
-        themeToken={themeToken}
-        readme={readme}
-      />
-    </HashRouter>
+    <Global {...props} preset={globalPreset} themeToken={globalPreset.themeToken}>
+      <Designer />
+    </Global>
   );
-};
+});
 
 export default App;
