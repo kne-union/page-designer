@@ -66,134 +66,84 @@
 ```jsx
 const { default: Renderer } = _Renderer;
 const BaseExample = () => {
-  return (
-    <Renderer
+  return (<Renderer
       content={{
         states: {
           open: {
-            initValue: true,
-            setStateName: 'setOpen'
+            initValue: true, setStateName: 'setOpen'
           }
-        },
-        variables: {
-          hello: 'HELLO',
-          world: 'WORLD'
-        },
-        functions: {
+        }, variables: {
+          hello: 'HELLO', world: 'WORLD'
+        }, functions: {
           say: 'console.log($args[0])',
           sayHello: '$functions.say($lib.lodash.get($variables,"hello")+" "+$variables.world);'
-        },
-        data: [
-          {
-            component: 'Container',
-            props: {
-              children: [
-                {
-                  component: 'Container',
-                  props: {
-                    children: '第一个子节点',
-                    onClick: '$functions.sayHello'
-                  }
-                },
-                {
-                  component: 'Container',
-                  props: {
-                    children: '第二个子节点',
-                    onClick: '$functions.sayHello'
-                  }
-                },
-                {
-                  component: 'Container',
-                  props: {
-                    children: '$variables.hello'
-                  }
-                },
-                {
-                  component: 'Container',
-                  props: {
-                    children: '$exec(1+1+$variables.hello)'
-                  }
-                },
-                {
-                  component: 'Container',
-                  props: {
-                    children: '$exec($variables.open?"开":"关")'
-                  }
-                },
-                {
-                  component: 'Button',
-                  props: {
-                    children: '切换',
-                    onClick: '$exec(()=>$functions.setOpen(!$variables.open))'
-                  }
-                },
-                {
-                  component: 'LoadingButton',
-                  props: {
-                    children: '加载按钮',
-                    onClick: '$exec(()=>new Promise((resolve)=>{setTimeout(resolve,1000);}))'
-                  }
-                },
-                {
-                  component: 'Global',
-                  props: {
-                    children: {
-                      component: 'Form',
-                      props: {
-                        onSubmit: '$exec((data)=>console.log(data))',
-                        children: {
-                          component: 'FormInfo',
-                          props: {
-                            title: '基本信息',
-                            list: [
-                              {
-                                component: 'Input',
-                                props: {
-                                  label: '姓名',
-                                  name: 'name',
-                                  rule: 'REQ'
-                                }
-                              },
-                              {
-                                component: 'Input',
-                                props: {
-                                  label: '电话',
-                                  name: 'phone',
-                                  rule: 'TEL',
-                                  block: true
-                                }
-                              },
-                              {
-                                component: 'SubmitButton',
-                                props: {
-                                  children: '提交'
-                                }
-                              }
-                            ]
+        }, data: [{
+          component: 'Container', props: {
+            children: [{
+              component: 'Container', props: {
+                children: '第一个子节点', onClick: '$functions.sayHello'
+              }
+            }, {
+              component: 'Container', props: {
+                children: '第二个子节点', onClick: '$functions.sayHello'
+              }
+            }, {
+              component: 'Container', props: {
+                children: '$variables.hello'
+              }
+            }, {
+              component: 'Container', props: {
+                children: '$exec(1+1+$variables.hello)'
+              }
+            }, {
+              component: 'Container', props: {
+                children: '$exec($variables.open?"开":"关")'
+              }
+            }, {
+              component: 'Button', props: {
+                children: '切换', onClick: '$exec(()=>$functions.setOpen(!$variables.open))'
+              }
+            }, {
+              component: 'LoadingButton', props: {
+                children: '加载按钮', onClick: '$exec(()=>new Promise((resolve)=>{setTimeout(resolve,1000);}))'
+              }
+            }, {
+              component: 'Global', props: {
+                children: {
+                  component: 'Form', props: {
+                    onSubmit: '$exec((data)=>console.log(data))', children: {
+                      component: 'FormInfo', props: {
+                        title: '基本信息', list: [{
+                          component: 'Input', props: {
+                            label: '姓名', name: 'name', rule: 'REQ'
                           }
-                        }
-                      }
-                    }
-                  }
-                },
-                {
-                  component: 'Global',
-                  props: {
-                    children: {
-                      component: 'Layout',
-                      props: {
-                        navigation: { isFixed: false }
+                        }, {
+                          component: 'Input', props: {
+                            label: '电话', name: 'phone', rule: 'TEL', block: true
+                          }
+                        }, {
+                          component: 'SubmitButton', props: {
+                            children: '提交'
+                          }
+                        }]
                       }
                     }
                   }
                 }
-              ]
-            }
+              }
+            }, {
+              component: 'Global', props: {
+                children: {
+                  component: 'Layout', props: {
+                    navigation: { isFixed: false }
+                  }
+                }
+              }
+            }]
           }
-        ]
+        }]
       }}
-    />
-  );
+    />);
 };
 
 render(<BaseExample />);

@@ -7,13 +7,17 @@ import { Button, Col, Row } from 'antd';
 const Designer = () => {
   const [content, setContent] = useState({
     states: {},
-    variables: {},
+    variables: {
+      hello: 'HELLO',
+      world: 'WORLD'
+    },
     functions: {
       test: 'console.log("test");',
       test2: 'console.log("test2");'
     },
     data: []
   });
+
   return (
     <Layout
       navOption={<CodeEditor value={{ states: content.states, variables: content.variables, functions: content.functions }} onChange={setContent} />}

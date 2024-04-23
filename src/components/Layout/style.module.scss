@@ -9,14 +9,18 @@
 
 .main {
   flex: 1;
-  background: #191a1b;
+  background: var(--bg-color-grey-4);
 }
 
 .top-bar {
-  box-shadow: rgb(16, 16, 17) 0 1px 0 0;
-  background: rgb(34, 35, 37);
+  background: #ffffff;
   height: 48px;
   padding: 0 60px;
+  box-shadow:
+    0 1px 2px 0 rgba(0, 0, 0, 0.03),
+    0 1px 6px -1px rgba(0, 0, 0, 0.02),
+    0 2px 4px 0 rgba(0, 0, 0, 0.02);
+  backdrop-filter: blur(8px);
 }
 
 .menu {
@@ -25,9 +29,9 @@
 }
 
 .canvas {
-  background: rgb(43, 43, 43);
-  position: relative;
+  background: #8b8c8c;
   overflow: hidden;
+  padding: 20px;
 }
 
 .props {
@@ -37,6 +41,7 @@
 .page {
   width: 100%;
   height: 100%;
+  position: relative;
 }
 
 .device {

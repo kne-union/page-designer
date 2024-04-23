@@ -1,48 +1,31 @@
-import { Button, Space } from 'antd';
-import { createWithRemoteLoader } from '@kne/remote-loader';
+import { Space } from 'antd';
 import Functions from './Functions';
+import Variables from './Variables';
+import States from './States';
 
-const CodeEditor = createWithRemoteLoader({
-  modules: [
-    'components-core:Modal@useModal',
-    'components-core:FormInfo',
-    'components-core:FormInfo@useFormModal',
-    'components-core:Menu',
-    'components-core:Icon',
-    'components-core:ConfirmButton',
-    'components-core:Common@SimpleBar'
-  ]
-})(({ value, onChange, remoteModules }) => {
-  const [useModal] = remoteModules;
-  const modal = useModal();
+const CodeEditor = ({ value, onChange }) => {
   return (
     <Space.Compact size="small">
-      <Button
-        onClick={() => {
-          modal({
-            title: '状态管理'
-          });
+      <States
+        value={value.states}
+        onChange={newStates => {
+          onChange?.(Object.assign({}, value, { states: newStates }));
         }}
-      >
-        状态
-      </Button>
-      <Button
-        onClick={() => {
-          modal({
-            title: '变量管理'
-          });
+      />
+      <Variables
+        value={value.variables}
+        onChange={newVariables => {
+          onChange?.(Object.assign({}, value, { variables: newVariables }));
         }}
-      >
-        变量
-      </Button>
+      />
       <Functions
         value={value.functions}
-        onChange={newFunction => {
-          onChange?.(Object.assign({}, value, { functions: newFunction }));
+        onChange={newFunctions => {
+          onChange?.(Object.assign({}, value, { functions: newFunctions }));
         }}
       />
     </Space.Compact>
   );
-});
+};
 
 export default CodeEditor;
