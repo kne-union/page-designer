@@ -16,9 +16,9 @@
 - _Designer(@components/Designer)
 
 ```jsx
-const {default:Designer} = _Designer;
-const BaseExample = ()=>{
-    return <Designer />;
+const { default: Designer } = _Designer;
+const BaseExample = () => {
+  return <Designer />;
 };
 
 render(<BaseExample />);
